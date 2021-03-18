@@ -1,0 +1,64 @@
+<template>
+	<div id="prompt">
+		<view class="g1">
+			<text style="font-size: 42srpx;margin-left: 220rpx;margin-top: 35rpx;">机器信息</text>
+			<text style="font-size: 32rpx;margin-left: 110rpx;margin-top: 30rpx;">{{content}}</text>
+			<button class="btn1" @click="gb()" style="background-color: #08d97b;"><text style="color: #FFFFFF;font-size: 32rpx;">确认</text></button>
+			<button class="btn2" @click="gb()"><text style="color: #08d97b;font-size: 32rpx;">取消</text></button>
+		</view>
+		
+	</div>
+</template>
+
+<script>
+	export default {
+		data(){
+			return{
+				content:this.content,
+			}
+		},
+		methods:{
+			gb(){
+				const subNVue1=uni.getSubNVueById('prompt');
+				subNVue1.hide();
+			}
+		},
+		onLoad() {
+			//接收参数
+			var that=this;
+			uni.$on('prompt', (data) => {  
+				that.content=data.content;
+			}) 
+		}
+	}
+</script>
+
+<style>
+.g1{
+	width: 600rpx;
+	height: 310rpx;
+	background-color: #FFFFFF;
+	margin-top: 700rpx;
+	margin-left: 80rpx;
+	border-radius: 25rpx;
+}
+.btn1{
+	
+	border-radius: 80rpx;
+	margin-top: 50rpx;
+	margin-left: 80rpx;
+	width: 220rpx;
+	height: 80rpx;
+	
+}
+.btn2{
+	border-color: #08d97b;
+	background-color: #FFFFFF;
+	border-radius: 80rpx;
+	margin-top: -80rpx;
+	margin-left: 320rpx;
+	width: 220rpx;
+	height: 80rpx;
+	
+}
+</style>

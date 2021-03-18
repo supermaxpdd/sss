@@ -1,0 +1,78 @@
+<template>
+   	<view>
+		<view class="tpview" style="background-color:  #fdfafc; " @tap="sx()">
+   		<image class="tpimg" src="../../static/png/map_png/gzsb.png" style="margin-top: 25rpx;"></image>
+		</view>
+		<button class="sysbtn" style="background-color:  #19d875;" @click="play()">
+			<image class="sysimg" src="../../static/png/map_png/sys1.png"></image>
+			<text class="systext" >扫一扫</text>
+		</button>
+		<view  style="margin-left: 616rpx;margin-top: -78rpx;">
+		<image class="tpimg" src="../../static/png/map_png/ret.png"></image>
+		</view>
+	</view>	
+</template>
+ 
+<script>
+	export default{
+		methods:{
+			play() {
+				uni.scanCode({
+					onlyFromCamera:true,
+					success: function (res) {
+						//扫码后跳转到的页面
+						const subNVue1=uni.getSubNVueById('prompt');
+						subNVue1.show('slide-in-left',1);
+						//传值
+						uni.$emit('prompt', {
+							content:res.result
+						});
+						console.log('条码类型：' + res.scanType);
+						console.log('条码内容：' + res.result);
+						// alert('条码内容:'+res.result);
+					}
+				});
+			},
+			sx(){
+				uni.navigateTo({
+					url: '/pages/polling/new',
+				});
+			}
+		}
+	}
+</script>
+
+<style >
+	.tpview{
+		width: 85rpx;
+		height: 85rpx;
+		border-radius: 60rpx;
+		margin-left: 57rpx;
+		margin-top: 1500rpx;
+		
+	}
+	.sysbtn{
+		margin-left: 205rpx;
+		width: 350rpx;
+		height: 105rpx;
+		border-radius: 60rpx;
+		margin-top: -95rpx;
+	}
+	.tpimg{
+		width: 43rpx;
+		height: 43rpx;
+		margin-left: 22rpx;
+		margin-top: 5rpx;
+	}
+	.systext{
+		margin-left: 10rpx;
+		font-size: 33rpx;
+		color: #FFFFFF;
+	}
+	.sysimg{
+		width: 40rpx;
+		height: 40rpx;
+		margin-top: 3rpx;
+		margin-right: 10rpx;
+	}
+</style>

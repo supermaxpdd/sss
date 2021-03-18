@@ -1,0 +1,98 @@
+{
+	"easycom": {
+			"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
+		},
+	"pages": [
+		{
+			"path": "pages/login/user_login",
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationBarBackgroundColor":"#FFFFFF"
+			}
+		},
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "uni-app"
+			}
+		},
+		{
+			"path": "pages/polling/map",
+			"style": {
+				"navigationStyle":"custom",
+				"navigationBarTitleText": "二维码巡检"
+			}
+		},
+		{
+			"path": "pages/polling/new",
+			"style": {
+				"navigationStyle":"custom",
+				"navigationBarTitleText": "二维码巡检"
+			}
+		},
+		{
+			"path": "pages/polling/map", //首页  
+			        "style": {
+						"navigationStyle":"custom",
+			            "app-plus": {  
+			                "subNVues":[{
+			                    "id": "menu", // 唯一标识  
+			                    "path": "pages/nvue/bottom_btn", // 页面路径  
+			                    "style": {  
+			                        "position":"absolute",
+									"dock":"left",
+									"background":"transparent"
+		                    }  
+		                },
+						{
+						           "id": "macinfo", // 唯一标识  
+						           "path": "pages/nvue/macInfo", // 页面路径  
+						           "style": {
+									   "position":"absolute",
+									   "dock":"left",
+									   "background":"transparent"
+						       }
+						},
+						{
+						           "id": "lp", // 唯一标识  
+						           "path": "pages/nvue/lp", // 页面路径  
+						           "style": {
+									   "position":"absolute",
+									   "dock":"left",
+									   "background":"transparent",
+									   "top":"430"
+						       }
+						},
+						{
+						           "id": "prompt", // 唯一标识  
+						           "path": "pages/nvue/prompt", // 页面路径  
+								   "type":"popup",
+						           "style": {
+									   "position":"absolute",
+									   "dock":"left",
+									   "background":"transparent"
+						       }
+						},
+						{
+						           "id": "drawer", // 唯一标识  
+						           "path": "pages/nvue/sideslip_menu", // 页面路径  
+								   "type":"popup",
+						           "style": {
+									   "position":"absolute",
+									   "dock":"left",
+									   "background":"transparent"
+						       }
+						}
+						
+						]
+		          }  
+		     }
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	}
+}

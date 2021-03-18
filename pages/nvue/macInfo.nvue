@@ -1,0 +1,117 @@
+<template>
+   <!-- 视图容器：显示三个按钮 -->
+   	<div id="macinfo">
+		<view class="tpq">
+			<view class="tp1">
+				<image src="../../static/png/map_png/ji.png" style="width: 155rpx;height: 135rpx;margin-top: 40rpx;margin-left: 90rpx;"></image>
+				<text class="ts1" style="font-size: 28rpx;color: #C8C7CC;margin-left: 137rpx;margin-top: 15rpx;">NO:{{id}}</text>
+			</view>
+			<view class="tp2">
+				<text class="ts2" style="font-size: 30rpx;">机器名称:   {{title}}</text>
+				<text class="ts3" style="font-size: 30rpx;">机器状态:   正常</text>
+				<text class="ts3" style="font-size: 30rpx;">距离:          {{jl}}米</text>
+				
+			</view>
+			<button class="e1" @tap="dh()">
+				<image src="../../static/png/map_png/dh1.png" style="width: 30rpx;height: 30rpx;margin-top:5rpx;"></image>
+				<text style="font-size: 30rpx;margin-left: 7rpx;">到这去</text>
+				</button>
+		</view>
+	</div>	
+</template>
+
+<script>
+	export default{
+		data(){
+			return{
+			id:this.id,
+			title:this.title,
+			jl:this.jl,
+			lat:this.lat,
+			lat1:this.lat1,
+			lon:this.lon,
+			lon1:this.lon1
+			}
+		},
+		onLoad() {
+			var that=this;
+			//接收参数
+			uni.$on('macinfo', (data) => {  
+				that.title=data.title;
+				that.jl=data.jl.toString().split('.')[0];
+				that.id=data.id;
+				that.lat=data.lat;
+				that.lat1=data.lat1;
+				that.lon=data.lon;
+				that.lon1=data.lon1;
+			})  
+		},
+		methods:{
+			//点击导航
+			dh(){
+				var packageName = 'com.autonavi.minimap';
+				var main = plus.android.runtimeMainActivity();
+				var packageManager = main.getPackageManager();    
+				var PackageManager = plus.android.importClass(packageManager)    
+				var packageInfo = packageManager.getPackageInfo(packageName,PackageManager.GET_ACTIVITIES);    
+				if(packageInfo){    
+				    var Uri = plus.android.importClass("android.net.Uri");  
+				    var url="amapuri://route/plan?sourceApplication=maxuslife"+
+				    "&sid=A&slat="+this.lat+"&slon="+this.lon+"&sname=开始"+
+				    "&did=B&dlat="+this.lat1+"&dlon="+this.lon1+"&dname=结束&dev=0&t=0";   
+				    var Intent = plus.android.importClass('android.content.Intent');    
+				    var intent = new Intent();  
+				    intent.setAction(Intent.ACTION_VIEW);  
+				    intent.addCategory(Intent.CATEGORY_DEFAULT);  
+				    var uri = Uri.parse(url);  
+				    //将功能Scheme以URI的方式传入data  
+				    intent.setData(uri);  
+				    intent.setPackage("com.autonavi.minimap");  
+				    var main = plus.android.runtimeMainActivity();    
+				    main.startActivity(intent);    
+				}  
+				else  
+				{  
+				    // alert('未安装' + packageName + '')    
+					uni.showToast({
+					  icon: 'none',
+					  title: '请先安装高德地图在使用本软件'
+					});
+					return;
+				}
+			}
+		}
+		}
+</script>
+
+<style >
+	.e1{
+		margin-left: 340rpx;
+		width: 160rpx;
+		height: 63rpx;
+		border-radius: 30rpx;
+		margin-top: 15rpx;
+	}
+	.tpq{
+		width: 670rpx;
+		height: 290rpx;
+		background-color: #FFFFFF;
+		margin-top: 180rpx;
+		margin-left: 40rpx;
+		border-radius: 30rpx;
+	}
+	.ts1{
+		margin-left: 125rpx;
+		margin-top: 130rpx;
+	}
+	.tp1{
+		margin-top: 30rpx;
+	}
+	.tp2{
+		margin-top: -210rpx;
+		margin-left: 320rpx;
+	}
+	.ts3{
+		margin-top: 20rpx;
+	}
+</style>

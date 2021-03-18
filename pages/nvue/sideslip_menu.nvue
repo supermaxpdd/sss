@@ -1,0 +1,66 @@
+<template>
+	<view>
+		<view class="tpq" >
+				<view class="avatar">
+					<image src="/static/png/map_png/tx.png"  class="xjimg"></image>
+					<text class="ts1" >巡检人员</text>
+				</view>
+				<view class="q1">
+					<view>
+					<image class="zhimg" src="/static/png/map_png/aq.png"  ></image>
+					<text class="ts2" style="font-size: 33rpx;">账户与安全</text>
+					<image class="jtimg" src="/static/png/map_png/jb.png"  ></image>
+					</view>
+				</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	export default{
+	}
+</script>
+
+<style >
+	.xjimg{
+		width: 130rpx;
+		height: 130rpx;
+		margin-left: 50rpx;
+		margin-top: 40rpx;
+	}
+	.tpq{
+		margin-top: 60rpx;
+		width: 610upx;
+		height: 1600upx;
+		background-color: #ffffff;
+	}
+	.ts1{
+		margin-left: 245rpx;
+		margin-top: -80rpx;
+		font-size: 37rpx;
+	}
+	.ts2{
+		margin-left: 150rpx;
+		margin-top: -45rpx;
+	}
+	.avatar{
+		padding: 35rpx 0;
+	}
+	.q1{
+		padding: 55rpx 0;
+		margin-top: 30rpx;
+	}
+	.zhimg{
+		margin-top: 80rpx;
+		margin-left: 70rpx;
+		width: 50rpx;
+		height: 50rpx;
+	}
+	.jtimg{
+		margin-left: 500rpx;
+		margin-top: -35rpx;
+		width: 35rpx;
+		height: 35rpx;
+	}
+	
+</style>

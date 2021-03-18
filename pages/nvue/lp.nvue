@@ -1,0 +1,52 @@
+<template>
+	<view >
+		<image class="zhiimg1" src="../../static/png/map_png/yuan.png" ></image>
+		<image class="zhiimg" src="../../static/png/map_png/zhi.png" :style="'transform: rotate('+direction+'deg)'"></image>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				direction: 0
+			}
+		},
+		onReady: function () {
+			uni.onCompassChange((res) => {
+				this.direction = parseInt(res.direction)
+			})
+		},
+		onUnload() {
+			// #ifndef MP-ALIPAY
+			uni.stopCompass();
+			this.direction = 0;
+			// #endif
+	
+			// #ifdef MP-ALIPAY
+			uni.offCompassChange();
+			// #endif
+		}
+	}
+</script>
+
+<style>
+	
+	.zhiimg {
+		/* position: absolute; */
+		/* top: 0; */
+		/* left: 0; */
+		position:fixed;
+		width: 40rpx;
+		height: 40rpx;
+		margin-left: 362rpx;
+		margin-top: 55rpx;
+	}
+	.zhiimg1 {
+		margin-left: 330rpx;
+		margin-top: 25rpx;
+		width: 100rpx;
+		height: 100rpx;
+		opacity:0.3;
+	}
+</style>
